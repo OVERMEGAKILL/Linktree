@@ -33,7 +33,7 @@ function animateLinks() {
     links.forEach((link, index) => {
         link.innerHTML = link.getAttribute('data-text'); // Afficher le texte initialement
         setTimeout(() => {
-            link.innerHTML = ''; // Effacer le texte avant de réécrire
+            link.innerHTML = ''; // Effacer le texte avant de rÃ©Ã©crire
             typeEffect(link, link.getAttribute('data-text'));
         }, index * 5000);
     });
@@ -48,11 +48,38 @@ function startAnimation() {
             link.style.opacity = 0;
             setTimeout(() => {
                 link.style.opacity = 1;
-                link.innerHTML = ''; // Effacer le texte avant de réécrire
+                link.innerHTML = ''; // Effacer le texte avant de rÃ©Ã©crire
                 typeEffect(link, link.getAttribute('data-text'));
             }, 500);
         });
     }, 9000); // 6 seconds for SAIBA + 3 seconds for animation
 }
 
-window.onload = startAnimation;
+function requestAudioPermission() {
+    const audioElement = document.getElementById('audio-element');
+    const playButton = document.createElement('button');
+    playButton.textContent = "Cliquez ici pour activer l'audio";
+    playButton.style.position = 'fixed';
+    playButton.style.top = '50%';
+    playButton.style.left = '50%';
+    playButton.style.transform = 'translate(-50%, -50%)';
+    playButton.style.padding = '10px 20px';
+    playButton.style.fontSize = '16px';
+    playButton.style.cursor = 'pointer';
+    playButton.style.zIndex = 1000;
+
+    playButton.addEventListener('click', () => {
+        audioElement.play().then(() => {
+            playButton.remove();
+        }).catch(error => {
+            console.error('Erreur lors de la lecture audio:', error);
+        });
+    });
+
+    document.body.appendChild(playButton);
+}
+
+window.onload = () => {
+    startAnimation();
+    requestAudioPermission();
+};
