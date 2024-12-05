@@ -31,10 +31,15 @@ function changeFontLetterByLetter(element, fonts, delay = 300) {
 function animateLinks() {
     const links = document.querySelectorAll('.link, .glitch');
     links.forEach((link, index) => {
-        link.innerHTML = link.getAttribute('data-text'); // Afficher le texte initialement
+        const originalText = link.getAttribute('data-text');
+        const originalHTML = link.innerHTML; // Enregistrer le HTML original pour réafficher les logos
+        link.innerHTML = originalText; // Afficher le texte initialement
         setTimeout(() => {
             link.innerHTML = ''; // Effacer le texte avant de réécrire
-            typeEffect(link, link.getAttribute('data-text'));
+            typeEffect(link, originalText);
+            setTimeout(() => {
+                link.innerHTML = originalHTML; // Réafficher les logos après l'animation
+            }, (originalText.length * 100 + fonts.length * 300 + 500));
         }, index * 5000);
     });
 }
@@ -48,8 +53,13 @@ function startAnimation() {
             link.style.opacity = 0;
             setTimeout(() => {
                 link.style.opacity = 1;
+                const originalText = link.getAttribute('data-text');
+                const originalHTML = link.innerHTML; // Enregistrer le HTML original pour réafficher les logos
                 link.innerHTML = ''; // Effacer le texte avant de réécrire
-                typeEffect(link, link.getAttribute('data-text'));
+                typeEffect(link, originalText);
+                setTimeout(() => {
+                    link.innerHTML = originalHTML; // Réafficher les logos après l'animation
+                }, (originalText.length * 100 + fonts.length * 300 + 500));
             }, 500);
         });
     }, 9000); // 6 seconds for SAIBA + 3 seconds for animation
