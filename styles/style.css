@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Beograd';
+    src: url('../assets/fonts/Beograd.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'LAKOSHEN';
+    src: url('../assets/fonts/LAKOSHEN Trial.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'LovecraftsDiary';
+    src: url('../assets/fonts/lovecrafts-diary.regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SAIBA';
+    src: url('../assets/fonts/SAIBA-45.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    font-family: 'SAIBA', sans-serif;
+    overflow: hidden;
+}
+
+spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: #00ff00;
+    animation: glitch 1s infinite;
+    position: relative;
+    z-index: 1;
+}
+
+.glitch {
+    font-size: 3em;
+    position: relative;
+    color: #00ff00;
+    animation: glitch 1s infinite;
+    font-family: 'SAIBA', sans-serif;
+}
+
+.link {
+    display: block;
+    margin: 10px 0;
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s, font-family 0.3s;
+    position: relative;
+    font-family: 'SAIBA', sans-serif;
+}
+
+    .link:hover {
+        color: #ff00ff;
+    }
+
+.audio-player {
+    position: fixed;
+    bottom: 30px; /* Remonter de 2 cm */
+    right: 10px;
+    width: 300px;
+    height: 80px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+    .audio-player:hover {
+        opacity: 1;
+    }
+
+@media (max-width: 768px) {
+    .glitch {
+        font-size: 2em;
+    }
+
+    .link {
+        font-size: 16px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .audio-player {
+        width: 100%;
+        bottom: 0;
+        right: 0;
+    }
+}
