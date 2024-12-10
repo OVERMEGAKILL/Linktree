@@ -29,16 +29,16 @@ function changeFontLetterByLetter(element, fonts, delay = 300) {
 }
 
 function animateLinks() {
-    const links = document.querySelectorAll('.link, .glitch');
+    const links = document.querySelectorAll('.link-text, .glitch');
     links.forEach((link, index) => {
         const originalText = link.getAttribute('data-text');
-        const originalHTML = link.innerHTML; // Enregistrer le HTML original pour réafficher les logos
+        const originalHTML = link.innerHTML; // Enregistrer le HTML original
         link.innerHTML = originalText; // Afficher le texte initialement
         setTimeout(() => {
             link.innerHTML = ''; // Effacer le texte avant de réécrire
             typeEffect(link, originalText);
             setTimeout(() => {
-                link.innerHTML = originalHTML; // Réafficher les logos après l'animation
+                link.innerHTML = originalHTML; // Réafficher le HTML original
             }, (originalText.length * 100 + fonts.length * 300 + 500));
         }, index * 5000);
     });
@@ -47,18 +47,18 @@ function animateLinks() {
 function startAnimation() {
     animateLinks();
     setInterval(() => {
-        const links = document.querySelectorAll('.link, .glitch');
+        const links = document.querySelectorAll('.link-text, .glitch');
         links.forEach(link => {
             link.style.transition = 'opacity 0.5s';
             link.style.opacity = 0;
             setTimeout(() => {
                 link.style.opacity = 1;
                 const originalText = link.getAttribute('data-text');
-                const originalHTML = link.innerHTML; // Enregistrer le HTML original pour réafficher les logos
+                const originalHTML = link.innerHTML; // Enregistrer le HTML original
                 link.innerHTML = ''; // Effacer le texte avant de réécrire
                 typeEffect(link, originalText);
                 setTimeout(() => {
-                    link.innerHTML = originalHTML; // Réafficher les logos après l'animation
+                    link.innerHTML = originalHTML; // Réafficher le HTML original
                 }, (originalText.length * 100 + fonts.length * 300 + 500));
             }, 500);
         });
@@ -75,7 +75,12 @@ function requestAudioPermission() {
     playButton.style.transform = 'translate(-50%, -50%)';
     playButton.style.padding = '10px 20px';
     playButton.style.fontSize = '16px';
+    playButton.style.backgroundColor = '#00ff00';
+    playButton.style.color = '#000';
+    playButton.style.border = 'none';
+    playButton.style.borderRadius = '5px';
     playButton.style.cursor = 'pointer';
+    playButton.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
     playButton.style.zIndex = 1000;
 
     playButton.addEventListener('click', () => {
