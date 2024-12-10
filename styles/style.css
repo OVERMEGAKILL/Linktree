@@ -68,7 +68,6 @@ spline-viewer {
     justify-content: center;
     padding: 10px 20px;
     margin: 10px 0;
-    color: #00ff00;
     text-decoration: none;
     font-size: 20px;
     transition: background-color 0.3s, color 0.3s, font-family 0.3s;
@@ -76,27 +75,37 @@ spline-viewer {
     font-family: 'SAIBA', sans-serif;
     border-radius: 25px;
     border: 2px solid #00ff00;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .link img {
     margin-right: 10px;
-    height: 20px;
+    height: 30px;
 }
 
-.link:hover {
+.link-text {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.link-text:hover {
     color: #ffffff;
 }
 
-.link.discord:hover {
+.link-text.discord:hover {
     background-color: #7289DA;
+    color: #ffffff;
 }
 
-.link.youtube:hover {
+.link-text.youtube:hover {
     background-color: #FF0000;
+    color: #ffffff;
 }
 
-.link.twitch:hover {
+.link-text.twitch:hover {
     background-color: #9146FF;
+    color: #ffffff;
 }
 
 .audio-player {
