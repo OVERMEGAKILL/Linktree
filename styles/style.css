@@ -88,19 +88,22 @@ spline-viewer {
     color: #00ff00;
     text-decoration: none;
     font-size: 20px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
 }
 
-.link.discord:hover {
+.link-text.discord:hover {
     background-color: #7289DA;
     color: #ffffff;
 }
 
-.link.youtube:hover {
+.link-text.youtube:hover {
     background-color: #FF0000;
     color: #ffffff;
 }
 
-.link.twitch:hover {
+.link-text.twitch:hover {
     background-color: #9146FF;
     color: #ffffff;
 }
