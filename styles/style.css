@@ -100,17 +100,17 @@ spline-viewer {
     color: #ffffff;
 }
 
-.link.discord:hover {
+.discord-link:hover {
     background-color: #7289DA;
     color: #ffffff;
 }
 
-.link.youtube:hover {
+.youtube-link:hover {
     background-color: #FF0000;
     color: #ffffff;
 }
 
-.link.twitch:hover {
+.twitch-link:hover {
     background-color: #9146FF;
     color: #ffffff;
 }
