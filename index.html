@@ -26,11 +26,14 @@
             </div>
         </div>
     </div>
-    <div id="audio-player">
-        <audio controls id="audio-element" loop>
+    <div id="audio-player" class="hidden">
+        <audio id="audio-element" loop>
             <source src="assets/audios/videoplayback.m4a" type="audio/mp4">
             Votre navigateur ne supporte pas l'élément audio.
         </audio>
+        <button id="play-audio">Play</button>
+        <button id="pause-audio">Pause</button>
+        <input type="range" id="audio-slider" min="0" value="0" step="1">
     </div>
     <script src="scripts/script.js"></script>
 </body>
