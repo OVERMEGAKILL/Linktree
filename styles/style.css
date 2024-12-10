@@ -96,23 +96,19 @@ spline-viewer {
     height: 100%;
 }
 
-.link:hover {
+.link.discord-link:hover .link-text {
     color: #ffffff;
-}
-
-.discord-link:hover {
     background-color: #7289DA;
-    color: #ffffff;
 }
 
-.youtube-link:hover {
+.link.youtube-link:hover .link-text {
+    color: #ffffff;
     background-color: #FF0000;
-    color: #ffffff;
 }
 
-.twitch-link:hover {
-    background-color: #9146FF;
+.link.twitch-link:hover .link-text {
     color: #ffffff;
+    background-color: #9146FF;
 }
 
 .audio-player {
