@@ -113,6 +113,10 @@ spline-viewer {
     background-color: #9146FF;
 }
 
+.tiktok-link:hover {
+    background-color: #69C9D0;
+}
+
 .link-text:hover {
     color: #ffffff;
 }
