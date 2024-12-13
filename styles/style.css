@@ -126,7 +126,24 @@ spline-viewer {
     color: #ffffff;
 }
 
-.audio-player:hover {
+.audio-player {
+    margin-top: 20px;
+}
+
+.audio-player button,
+.audio-player input {
+    color: #00ff00;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #00ff00;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.audio-player button:hover,
+.audio-player input:hover {
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0.8);
 }
