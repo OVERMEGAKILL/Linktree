@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Une page interactive avec des animations personnalisées et des liens vers Discord, YouTube, Twitch et TikTok.">
+    <meta name="description" content="Une page interactive avec des animations personnalisées, des liens dynamiques et un lecteur audio.">
     <title>OVERMEGALINKS</title>
     <link rel="stylesheet" href="styles/style.css">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.23/build/spline-viewer.js"></script>
@@ -16,7 +16,7 @@
         role="img">
     </spline-viewer>
 
-    <!-- Contenu principal -->
+    <!-- Conteneur principal -->
     <main class="container">
         <h1 class="glitch" data-text="LINKS" aria-label="Titre LINKS avec effet glitch">LINKS</h1>
         <section class="links">
@@ -41,7 +41,7 @@
                 <a href="https://www.tiktok.com/@overmegakill" class="link-text tiktok" data-text="TIKTOK" target="_blank" rel="noopener noreferrer">TIKTOK</a>
             </div>
         </section>
-        
+
         <!-- Lecteur audio -->
         <div id="audio-player" class="audio-player">
             <audio id="audio-element" loop aria-label="Lecteur audio">
@@ -51,6 +51,11 @@
             <button id="play-audio" aria-label="Lancer la lecture audio">Play</button>
             <button id="pause-audio" aria-label="Mettre en pause l'audio">Pause</button>
             <input type="range" id="audio-slider" min="0" value="0" step="1" aria-label="Contrôle de progression de l'audio">
+        </div>
+
+        <!-- Fond semi-transparent -->
+        <div id="overlay">
+            <button id="close-overlay" aria-label="Fermer le fond sombre">Fermer</button>
         </div>
     </main>
 

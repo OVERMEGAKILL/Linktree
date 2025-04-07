@@ -120,6 +120,30 @@ spline-viewer {
     width: 100%;
 }
 
+/* Fond semi-transparent */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
+    z-index: 2;
+    display: none; /* Caché par défaut */
+}
+
+#overlay button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background: #00ff00;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 /* Styles pour petits écrans */
 @media (max-width: 768px) {
     .glitch {

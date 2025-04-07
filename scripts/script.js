@@ -23,20 +23,37 @@ const App = {
         });
     },
 
-    // Contrôle de l'audio
+    // Contrôle de l'audio avec fond semi-transparent
     initAudioControls() {
         const audio = document.getElementById('audio-element');
         const playButton = document.getElementById('play-audio');
         const pauseButton = document.getElementById('pause-audio');
         const slider = document.getElementById('audio-slider');
+        const overlay = document.getElementById('overlay');
+        const closeButton = document.getElementById('close-overlay');
 
-        if (!audio || !playButton || !pauseButton || !slider) return; // Vérification des éléments
+        if (!audio || !playButton || !pauseButton || !slider || !overlay || !closeButton) return; // Vérification des éléments
+
+        // Demande de confirmation pour lancer l'audio
+        const userConsent = window.confirm("Voulez-vous activer le lecteur audio ?");
+        if (userConsent) {
+            audio.play();
+            overlay.style.display = 'block'; // Afficher le fond semi-transparent
+        } else {
+            audio.pause();
+        }
 
         // Lancer la lecture
-        playButton.addEventListener('click', () => audio.play());
+        playButton.addEventListener('click', () => {
+            audio.play();
+            overlay.style.display = 'block'; // Afficher l'overlay lors de la lecture
+        });
 
         // Mettre en pause
-        pauseButton.addEventListener('click', () => audio.pause());
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+            overlay.style.display = 'none'; // Masquer l'overlay lors de la pause
+        });
 
         // Mise à jour du slider pendant la lecture
         audio.addEventListener('timeupdate', () => {
@@ -51,6 +68,12 @@ const App = {
         // Ajuster la durée du slider après le chargement des métadonnées
         audio.addEventListener('loadedmetadata', () => {
             slider.max = audio.duration;
+        });
+
+        // Gérer la fermeture de l'overlay
+        closeButton.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            audio.pause(); // Met l'audio en pause si l'overlay est fermé manuellement
         });
     },
 
