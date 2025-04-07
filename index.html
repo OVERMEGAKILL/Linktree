@@ -3,26 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OVER Linktree</title>
+    <meta name="description" content="Une page interactive avec des animations personnalisées et des liens vers Discord, YouTube, Twitch et TikTok.">
+    <title>OVERMEGALINKS</title>
     <link rel="stylesheet" href="styles/style.css">
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.23/build/spline-viewer.js"></script>
 </head>
 <body>
-    <spline-viewer url="https://prod.spline.design/vSjXie5Vy82tcP3s/scene.splinecode"></spline-viewer>
-    <div class="container">
-        <h1 class="glitch" data-text="LINKS">LINKS</h1>
-        <div class="links">
-            <a href="https://votre-lien-1.com" class="link" data-text="Lien 1">DISCORD</a>
-            <a href="https://votre-lien-2.com" class="link" data-text="Lien 2">YOUTUBE</a>
-            <a href="https://votre-lien-3.com" class="link" data-text="Lien 3">TWITCH</a>
+    <!-- Visionneuse 3D -->
+    <spline-viewer 
+        url="https://prod.spline.design/vSjXie5Vy82tcP3s/scene.splinecode" 
+        aria-label="Design 3D interactif" 
+        role="img">
+    </spline-viewer>
+
+    <!-- Contenu principal -->
+    <main class="container">
+        <h1 class="glitch" data-text="LINKS" aria-label="Titre LINKS avec effet glitch">LINKS</h1>
+        <section class="links">
+            <!-- Lien Discord -->
+            <div class="link discord-link">
+                <img src="assets/images/discord-logo.svg" alt="Logo Discord, lien vers le serveur Discord">
+                <a href="https://discord.gg/RTKx7MnrYf" class="link-text discord" data-text="DISCORD" target="_blank" rel="noopener noreferrer">DISCORD</a>
+            </div>
+            <!-- Lien YouTube -->
+            <div class="link youtube-link">
+                <img src="assets/images/youtube-logo.svg" alt="Logo YouTube, lien vers la chaîne YouTube">
+                <a href="https://www.youtube.com/@VmeMore" class="link-text youtube" data-text="YOUTUBE" target="_blank" rel="noopener noreferrer">YOUTUBE</a>
+            </div>
+            <!-- Lien Twitch -->
+            <div class="link twitch-link">
+                <img src="assets/images/twitch-logo.svg" alt="Logo Twitch, lien vers la chaîne Twitch">
+                <a href="https://www.twitch.tv/overmegakill" class="link-text twitch" data-text="TWITCH" target="_blank" rel="noopener noreferrer">TWITCH</a>
+            </div>
+            <!-- Lien TikTok -->
+            <div class="link tiktok-link">
+                <img src="assets/images/tiktok-logo.svg" alt="Logo TikTok, lien vers le compte TikTok">
+                <a href="https://www.tiktok.com/@overmegakill" class="link-text tiktok" data-text="TIKTOK" target="_blank" rel="noopener noreferrer">TIKTOK</a>
+            </div>
+        </section>
+        
+        <!-- Lecteur audio -->
+        <div id="audio-player" class="audio-player">
+            <audio id="audio-element" loop aria-label="Lecteur audio">
+                <source src="assets/audios/videoplayback.m4a" type="audio/mp4">
+                Votre navigateur ne supporte pas l'élément audio. <a href="assets/audios/videoplayback.m4a">Téléchargez le fichier audio ici.</a>
+            </audio>
+            <button id="play-audio" aria-label="Lancer la lecture audio">Play</button>
+            <button id="pause-audio" aria-label="Mettre en pause l'audio">Pause</button>
+            <input type="range" id="audio-slider" min="0" value="0" step="1" aria-label="Contrôle de progression de l'audio">
         </div>
-    </div>
-    <div id="audio-player">
-        <audio controls>
-            <source src="assets/audios/videoplayback.m4a" type="audio/mp4">
-            Votre navigateur ne supporte pas l'élément audio.
-        </audio>
-    </div>
+    </main>
+
     <script src="scripts/script.js"></script>
 </body>
 </html>
