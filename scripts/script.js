@@ -2,9 +2,35 @@
 const App = {
     // Initialisation des fonctionnalités
     init() {
+        this.showConsentPanel(); // Afficher le panneau de consentement
         this.initMouseEffect(); // Animation de la souris
-        this.initAudioControls(); // Contrôle de l'audio
         this.startLinkAnimations(); // Animation des liens
+    },
+
+    // Afficher le panneau de consentement audio au chargement de la page
+    showConsentPanel() {
+        const overlay = document.getElementById('overlay');
+        const audioConsentPanel = document.getElementById('audio-consent-panel');
+        const acceptButton = document.getElementById('accept-audio');
+        const declineButton = document.getElementById('decline-audio');
+        const audio = document.getElementById('audio-element');
+
+        if (!overlay || !audioConsentPanel || !acceptButton || !declineButton || !audio) return; // Sécurité
+
+        // Afficher le panneau de consentement
+        overlay.style.display = 'flex';
+
+        // Gestion du bouton "Accepter"
+        acceptButton.addEventListener('click', () => {
+            overlay.style.display = 'none'; // Masquer l'overlay
+            audio.play(); // Lancer l'audio
+        });
+
+        // Gestion du bouton "Refuser"
+        declineButton.addEventListener('click', () => {
+            overlay.style.display = 'none'; // Masquer l'overlay
+            audio.pause(); // S'assurer que l'audio reste désactivé
+        });
     },
 
     // Effet de rotation basé sur les mouvements de la souris
@@ -20,60 +46,6 @@ const App = {
             requestAnimationFrame(() => {
                 container.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
             });
-        });
-    },
-
-    // Contrôle de l'audio avec fond semi-transparent
-    initAudioControls() {
-        const audio = document.getElementById('audio-element');
-        const playButton = document.getElementById('play-audio');
-        const pauseButton = document.getElementById('pause-audio');
-        const slider = document.getElementById('audio-slider');
-        const overlay = document.getElementById('overlay');
-        const closeButton = document.getElementById('close-overlay');
-
-        if (!audio || !playButton || !pauseButton || !slider || !overlay || !closeButton) return; // Vérification des éléments
-
-        // Demande de confirmation pour lancer l'audio
-        const userConsent = window.confirm("Voulez-vous activer le lecteur audio ?");
-        if (userConsent) {
-            audio.play();
-            overlay.style.display = 'block'; // Afficher le fond semi-transparent
-        } else {
-            audio.pause();
-        }
-
-        // Lancer la lecture
-        playButton.addEventListener('click', () => {
-            audio.play();
-            overlay.style.display = 'block'; // Afficher l'overlay lors de la lecture
-        });
-
-        // Mettre en pause
-        pauseButton.addEventListener('click', () => {
-            audio.pause();
-            overlay.style.display = 'none'; // Masquer l'overlay lors de la pause
-        });
-
-        // Mise à jour du slider pendant la lecture
-        audio.addEventListener('timeupdate', () => {
-            slider.value = audio.currentTime;
-        });
-
-        // Synchroniser l'audio avec le slider
-        slider.addEventListener('input', (e) => {
-            audio.currentTime = e.target.value;
-        });
-
-        // Ajuster la durée du slider après le chargement des métadonnées
-        audio.addEventListener('loadedmetadata', () => {
-            slider.max = audio.duration;
-        });
-
-        // Gérer la fermeture de l'overlay
-        closeButton.addEventListener('click', () => {
-            overlay.style.display = 'none';
-            audio.pause(); // Met l'audio en pause si l'overlay est fermé manuellement
         });
     },
 

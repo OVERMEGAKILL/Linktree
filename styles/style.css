@@ -99,9 +99,7 @@ spline-viewer {
 
 /* Lecteur audio */
 .audio-player {
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
+    margin-top: 20px; /* Position sous les liens */
     width: 300px;
     height: 80px;
     padding: 10px;
@@ -129,19 +127,59 @@ spline-viewer {
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
     z-index: 2;
-    display: none; /* Caché par défaut */
+    display: flex; /* Pour centrer le panneau */
+    justify-content: center;
+    align-items: center;
 }
 
-#overlay button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+/* Panneau de consentement audio */
+#audio-consent-panel {
+    background: rgba(0, 0, 0, 0.9); /* Fond sombre */
+    color: #fff;
+    font-family: 'SAIBA', sans-serif; /* Utilisation de la typo SAIBA */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+#audio-consent-panel p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Boutons de consentement */
+.consent-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.button {
     padding: 10px 20px;
-    background: #00ff00;
-    color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'SAIBA', sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.button.green {
+    background-color: #00ff00; /* Accepter */
+}
+
+.button.green:hover {
+    background-color: #00cc00;
+}
+
+.button.red {
+    background-color: #ff0000; /* Refuser */
+}
+
+.button.red:hover {
+    background-color: #cc0000;
 }
 
 /* Styles pour petits écrans */
@@ -157,8 +195,19 @@ spline-viewer {
 
     .audio-player {
         width: 90%;
-        bottom: 10px;
-        right: 5%;
+        margin-top: 10px;
+    }
+
+    #audio-consent-panel {
+        padding: 15px;
+    }
+
+    #audio-consent-panel p {
+        font-size: 1.2em;
+    }
+
+    .button {
+        font-size: 1em;
     }
 }
 
