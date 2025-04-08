@@ -9,7 +9,7 @@ const App = {
     },
 
     // Afficher le panneau de consentement audio au chargement de la page
-    showConsentPanel() {
+   /* showConsentPanel() {
         const overlay = document.getElementById('overlay'); // Panneau principal
         const acceptButton = document.getElementById('accept-audio'); // Bouton Accepter
         const declineButton = document.getElementById('decline-audio'); // Bouton Refuser
@@ -37,7 +37,37 @@ const App = {
             audio.pause(); // Ne pas démarrer la musique
             console.log("Audio refusé !");
         });
-    },
+    }, */
+	
+	showConsentPanel() {
+    const overlay = document.getElementById('overlay'); // Panneau principal
+    const acceptButton = document.getElementById('accept-audio'); // Bouton Accepter
+    const declineButton = document.getElementById('decline-audio'); // Bouton Refuser
+    const audio = document.getElementById('audio-element'); // Élément audio principal du nouveau lecteur
+
+    // Vérification des éléments requis
+    if (!overlay || !acceptButton || !declineButton || !audio) {
+        console.error("Un ou plusieurs éléments requis sont introuvables !");
+        return;
+    }
+
+    // Afficher l'overlay de consentement
+    overlay.style.display = 'flex';
+
+    // Bouton "Accepter" - Démarrer l'audio
+    acceptButton.addEventListener('click', () => {
+        overlay.style.display = 'none'; // Cacher l'overlay
+        audio.play(); // Démarrer la musique
+        console.log("Audio activé !");
+    });
+
+    // Bouton "Refuser" - Arrêter l'audio
+    declineButton.addEventListener('click', () => {
+        overlay.style.display = 'none'; // Cacher l'overlay
+        audio.pause(); // S'assurer que la musique reste arrêtée
+        console.log("Audio refusé !");
+    });
+}
 
     // Effet de rotation basé sur les mouvements de la souris
     initMouseEffect() {
