@@ -10,11 +10,12 @@ const App = {
 
     // Afficher le panneau de consentement audio au chargement de la page
     showConsentPanel() {
-        const overlay = document.getElementById('overlay');
-        const acceptButton = document.getElementById('accept-audio');
-        const declineButton = document.getElementById('decline-audio');
-        const audio = document.getElementById('audio-element');
+        const overlay = document.getElementById('overlay'); // Panneau principal
+        const acceptButton = document.getElementById('accept-audio'); // Bouton Accepter
+        const declineButton = document.getElementById('decline-audio'); // Bouton Refuser
+        const audio = document.getElementById('audio-element'); // Élément audio
 
+        // Vérification des éléments requis
         if (!overlay || !acceptButton || !declineButton || !audio) {
             console.error("Un ou plusieurs éléments requis sont introuvables !");
             return;
@@ -27,14 +28,14 @@ const App = {
         acceptButton.addEventListener('click', () => {
             overlay.style.display = 'none'; // Masquer le panneau
             audio.play(); // Lancer la musique
-            console.log("Audio activé par l'utilisateur !");
+            console.log("Audio activé !");
         });
 
         // Gestion du bouton "Refuser"
         declineButton.addEventListener('click', () => {
             overlay.style.display = 'none'; // Masquer le panneau
-            audio.pause(); // Ne pas lancer la musique
-            console.log("Audio refusé par l'utilisateur !");
+            audio.pause(); // Ne pas démarrer la musique
+            console.log("Audio refusé !");
         });
     },
 
@@ -59,6 +60,7 @@ const App = {
         const playPauseButton = document.getElementById('play-pause-audio');
         const slider = document.getElementById('audio-slider');
 
+        // Vérification des éléments requis
         if (!audio || !playPauseButton || !slider) {
             console.error("Le lecteur audio ou ses contrôles ne sont pas correctement configurés !");
             return;
