@@ -104,7 +104,7 @@ spline-viewer {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    text-decoration: none; /* Suppression du soulignement */
+    text-decoration: none; /* Supprime le soulignement */
     padding: 10px 20px; /* Taille correcte des boutons */
     border: 2px solid #00ff00; /* Bordure verte par défaut */
     border-radius: 10px; /* Coins arrondis */
@@ -112,7 +112,7 @@ spline-viewer {
     color: #fff; /* Typographie blanche par défaut */
     font-size: 1.5em;
     font-family: 'Beograd', sans-serif;
-    transition: color 0.3s ease-in-out;
+    transition: color 0.3s ease, border-color 0.3s ease;
     position: relative;
     overflow: hidden; /* Nécessaire pour l'effet glitch */
 }
@@ -125,12 +125,9 @@ spline-viewer {
 /* Typographie glitch et bordures glitch des boutons au survol */
 .link:hover {
     color: #00ff00; /* Typographie verte au survol */
-    text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Glitch sur la typo */
-    animation: glitch 1.5s infinite; /* Effet glitch sur la typo */
-    border-color: transparent; /* Bordure classique invisible pour activer l'effet */
+    border-color: #00ff00; /* Bordure reste verte avec l'effet glitch */
 }
 
-/* Effet glitch sur les bords des boutons */
 .link::before,
 .link::after {
     content: '';
@@ -152,51 +149,44 @@ spline-viewer {
     transition: opacity 0.3s ease-in-out;
 }
 
+.link:hover::before,
+.link:hover::after {
+    opacity: 1; /* Affiche l'effet glitch des bordures */
+    animation: glitch-border 1.5s infinite; /* Animation fluide pour les bordures */
+}
+
 /* Couleurs typo des boutons */
 .discord-link {
-	color: #fff; /* Blanc */
-	text-decoration: none; /* Suppression du soulignement */
+    color: #fff; /* Blanc par défaut */
 }
 
 .youtube-link {
-	color: #fff; /* Blanc */
-	text-decoration: none; /* Suppression du soulignement */
+    color: #fff; /* Blanc par défaut */
 }
 
 .twitch-link {
-	color: #fff; /* Blanc */
-	text-decoration: none; /* Suppression du soulignement */
+    color: #fff; /* Blanc par défaut */
 }
 
 .tiktok-link {
-    color: #fff; /* Blanc */
-	text-decoration: none; /* Suppression du soulignement */
-}
-
-.link:hover::before {
-    opacity: 1; /* Afficher l'effet glitch sur les bords */
-    animation: glitch-border 1.5s infinite; /* Animation fluide pour les bordures */
+    color: #fff; /* Blanc par défaut */
 }
 
 /* Couleurs des boutons au survol */
 .discord-link:hover {
     background-color: #5865F2; /* Bleu Discord */
-	color: #00ff00; /* Vert au survol */
 }
 
 .youtube-link:hover {
     background-color: #FF0000; /* Rouge YouTube */
-	color: #00ff00; /* Vert au survol */
 }
 
 .twitch-link:hover {
     background-color: #9146FF; /* Violet Twitch */
-	color: #00ff00; /* Vert au survol */
 }
 
 .tiktok-link:hover {
     background-color: #FF0050; /* Rose TikTok */
-	color: #00ff00; /* Vert au survol */
 }
 
 /* Animation glitch pour les bords */
