@@ -118,7 +118,7 @@ spline-viewer {
 }
 
 .link a {
-	color:#fff;
+	color:#00ff00;
     text-decoration: none; /* Supprime le soulignement */
 }
 
@@ -133,10 +133,6 @@ spline-viewer {
     border-color: #00ff00; /* Bordure reste verte avec l'effet glitch */
 	text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Glitch sur la typo */ 
 	animation: glitch 1.5s infinite; /* Effet glitch sur la typo */
-}
-
-.link a:hover{
-	color:#00ff00;
 }
 
 .link::before,
