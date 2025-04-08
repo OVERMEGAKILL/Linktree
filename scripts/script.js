@@ -54,43 +54,46 @@ const App = {
         });
     },
 
-    // Contrôle du lecteur audio inspiré de Spotify
+    // Contrôle du lecteur audio
     initAudioControls() {
         const audio = document.getElementById('audio-element');
         const playPauseButton = document.getElementById('play-pause-audio');
-        const audioSlider = document.getElementById('audio-slider');
-        const volumeSlider = document.getElementById('volume-slider');
+        const slider = document.getElementById('audio-slider');
 
         // Vérification des éléments requis
-        if (!audio || !playPauseButton || !audioSlider || !volumeSlider) {
+        if (!audio || !playPauseButton || !slider) {
             console.error("Le lecteur audio ou ses contrôles ne sont pas correctement configurés !");
             return;
         }
 
-        // Lecture et pause
+        // Basculer entre lecture et pause
         playPauseButton.addEventListener('click', () => {
             if (audio.paused) {
                 audio.play();
                 playPauseButton.textContent = 'Pause'; // Changer le bouton en Pause
+                playPauseButton.setAttribute('aria-label', 'Pause');
+                console.log("Lecture audio démarrée !");
             } else {
                 audio.pause();
                 playPauseButton.textContent = 'Play'; // Changer le bouton en Play
+                playPauseButton.setAttribute('aria-label', 'Play');
+                console.log("Lecture audio mise en pause !");
             }
         });
 
-        // Mise à jour de la barre de progression
+        // Mettre à jour la barre de progression pendant la lecture
         audio.addEventListener('timeupdate', () => {
-            audioSlider.value = (audio.currentTime / audio.duration) * 100 || 0;
+            slider.value = audio.currentTime;
         });
 
-        // Modification de la position de l'audio avec le slider
-        audioSlider.addEventListener('input', (e) => {
-            audio.currentTime = (e.target.value / 100) * audio.duration;
+        // Ajuster la durée maximale de la barre après le chargement des métadonnées
+        audio.addEventListener('loadedmetadata', () => {
+            slider.max = audio.duration;
         });
 
-        // Ajustement du volume
-        volumeSlider.addEventListener('input', (e) => {
-            audio.volume = e.target.value;
+        // Permettre à l'utilisateur de choisir un moment précis dans la musique
+        slider.addEventListener('input', (e) => {
+            audio.currentTime = e.target.value;
         });
     },
 
