@@ -9,7 +9,7 @@ const App = {
     },
 
     // Afficher le panneau de consentement audio au chargement de la page
-   /* showConsentPanel() {
+    showConsentPanel() {
         const overlay = document.getElementById('overlay'); // Panneau principal
         const acceptButton = document.getElementById('accept-audio'); // Bouton Accepter
         const declineButton = document.getElementById('decline-audio'); // Bouton Refuser
@@ -37,40 +37,25 @@ const App = {
             audio.pause(); // Ne pas démarrer la musique
             console.log("Audio refusé !");
         });
-    }, */
-	
-showConsentPanel() {
-    const overlay = document.getElementById('overlay');
-    const acceptButton = document.getElementById('accept-audio');
-    const declineButton = document.getElementById('decline-audio');
-    const audioElement = document.getElementById('audio-element');
+    },
 
-    // Vérification des éléments requis
-    if (!overlay || !acceptButton || !declineButton || !audioElement) {
-        console.error("Un ou plusieurs éléments requis sont introuvables !");
-        return;
-    }
+    // Effet de rotation basé sur les mouvements de la souris
+    initMouseEffect() {
+        const container = document.querySelector('.container');
+        if (!container) return;
 
-    // Afficher l'overlay
-    overlay.style.display = 'flex';
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 20;
+            const y = (window.innerHeight / 2 - e.pageY) / 20;
 
-    // Bouton "Accepter"
-    acceptButton.addEventListener('click', () => {
-        overlay.style.display = 'none'; // Masquer l'overlay
-        audioElement.play(); // Démarrer la musique
-        console.log("Audio activé !");
-    });
-
-    // Bouton "Refuser"
-    declineButton.addEventListener('click', () => {
-        overlay.style.display = 'none'; // Masquer l'overlay
-        audioElement.pause(); // S'assurer que l'audio reste en pause
-        console.log("Audio refusé !");
-    });
-}
+            requestAnimationFrame(() => {
+                container.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+            });
+        });
+    },
 
     // Contrôle du lecteur audio
-   /*  initAudioControls() {
+	initAudioControls() {
         const audio = document.getElementById('audio-element');
         const playPauseButton = document.getElementById('play-pause-audio');
         const slider = document.getElementById('audio-slider');
@@ -110,38 +95,8 @@ showConsentPanel() {
         slider.addEventListener('input', (e) => {
             audio.currentTime = e.target.value;
         });
-    }, */
-	
-const audioElement = document.getElementById('audio-element');
-const playPauseButton = document.getElementById('play-pause-audio');
-const audioSlider = document.getElementById('audio-slider');
-const volumeSlider = document.getElementById('volume-slider');
+    },
 
-// Lecture et pause
-playPauseButton.addEventListener('click', () => {
-    if (audioElement.paused) {
-        audioElement.play();
-        playPauseButton.textContent = 'Pause';
-    } else {
-        audioElement.pause();
-        playPauseButton.textContent = 'Play';
-    }
-});
-
-// Mise à jour de la barre de progression
-audioElement.addEventListener('timeupdate', () => {
-    audioSlider.value = (audioElement.currentTime / audioElement.duration) * 100 || 0;
-});
-
-// Modification de la position de l'audio avec le slider
-audioSlider.addEventListener('input', (e) => {
-    audioElement.currentTime = (e.target.value / 100) * audioElement.duration;
-});
-
-// Ajustement du volume
-volumeSlider.addEventListener('input', (e) => {
-    audioElement.volume = e.target.value;
-});
 
     // Animation des liens
     startLinkAnimations() {
