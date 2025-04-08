@@ -45,7 +45,7 @@ spline-viewer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
+    background: rgba(0, 0, 0, 0.5);
     z-index: -1; /* Sous le contenu principal mais au-dessus de la visionneuse Spline */
 }
 
@@ -102,13 +102,14 @@ spline-viewer {
 .link {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     text-decoration: none; /* Suppression du soulignement */
-    padding: 10px 20px;
-    border: 2px solid #00ff00;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff; /* Typographie blanche */
+    padding: 10px 20px; /* Taille correcte des boutons */
+    border: 2px solid #00ff00; /* Bordure verte par défaut */
+    border-radius: 10px; /* Coins arrondis */
+    background: rgba(0, 0, 0, 0.8); /* Fond sombre par défaut */
+    color: #fff; /* Typographie blanche par défaut */
     font-size: 1.5em;
     font-family: 'Beograd', sans-serif;
     transition: all 0.3s ease-in-out;
@@ -117,8 +118,43 @@ spline-viewer {
 }
 
 .link img {
-    width: 40px;
-    height: 40px;
+    width: 30px; /* Taille réduite des logos */
+    height: 30px; /* Taille réduite des logos */
+}
+
+/* Typographie glitch et bordures glitch des boutons au survol */
+.link:hover {
+    color: #00ff00; /* Typographie verte au survol */
+    text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Glitch sur la typo */
+    animation: glitch 1.5s infinite; /* Effet glitch sur la typo */
+    border-color: transparent; /* Bordure classique invisible pour activer l'effet */
+}
+
+/* Effet glitch sur les bords des boutons */
+.link::before,
+.link::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 0, 0, 0.8),
+        rgba(0, 255, 0, 0.8),
+        rgba(0, 0, 255, 0.8),
+        rgba(255, 255, 0, 0.8)
+    );
+    z-index: -1;
+    opacity: 0; /* Caché par défaut */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transition: opacity 0.3s ease-in-out;
+}
+
+.link:hover::before {
+    opacity: 1; /* Afficher l'effet glitch sur les bords */
+    animation: glitch-border 1.5s infinite; /* Animation fluide pour les bordures */
 }
 
 /* Couleurs des boutons au survol */
@@ -138,37 +174,7 @@ spline-viewer {
     background-color: #FF0050; /* Rose TikTok */
 }
 
-/* Effet glitch sur les bords des boutons */
-.link:hover {
-    border-color: transparent; /* Supprime la bordure par défaut */
-}
-
-.link::before,
-.link::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(
-        45deg,
-        rgba(255, 0, 0, 0.8),
-        rgba(0, 255, 0, 0.8),
-        rgba(0, 0, 255, 0.8),
-        rgba(255, 255, 0, 0.8)
-    );
-    z-index: -1;
-    opacity: 0; /* Caché par défaut */
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-
-.link:hover::before {
-    opacity: 1; /* Afficher l'effet glitch au survol */
-    animation: glitch-border 0.8s infinite;
-}
-
-/* Animation glitch */
+/* Animation glitch pour les bords */
 @keyframes glitch-border {
     0% {
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
