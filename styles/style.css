@@ -85,80 +85,113 @@ spline-viewer {
     display: flex;
     align-items: center;
     gap: 10px;
-    text-decoration: none; /* Suppression du soulignement */
+    text-decoration: none;
     padding: 10px 20px;
-    border: 2px solid transparent;
+    border: 2px solid #00ff00;
     border-radius: 10px;
-    font-family: 'Beograd', sans-serif;
-    color: #fff;
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ff00;
     font-size: 1.5em;
+    font-family: 'Beograd', sans-serif;
     transition: all 0.3s ease-in-out;
-    position: relative; /* Nécessaire pour l'effet glitch */
 }
 
-/* Couleurs des fonds des boutons */
-.discord-link {
-    background-color: #5865F2; /* Bleu Discord */
-}
-.youtube-link {
-    background-color: #FF0000; /* Rouge YouTube */
-}
-.twitch-link {
-    background-color: #9146FF; /* Violet Twitch */
-}
-.tiktok-link {
-    background-color: #FF0050; /* Rose TikTok */
+.link img {
+    width: 40px;
+    height: 40px;
 }
 
-/* Effet glitch sur les bords au survol */
 .link:hover {
-    border-color: transparent; /* Supprime les bordures par défaut */
+    color: #ff00ff;
+    border-color: #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+    transform: scale(1.05);
 }
 
-.link::before,
-.link::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(
-        45deg,
-        rgba(255, 0, 0, 0.5),
-        rgba(0, 255, 0, 0.5),
-        rgba(0, 0, 255, 0.5),
-        rgba(255, 255, 0, 0.5),
-        rgba(255, 0, 255, 0.5)
-    );
-    z-index: -1;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    animation: glitch-border 1.5s infinite;
-    display: none; /* Caché par défaut */
+/* Lecteur audio */
+.audio-player {
+    margin-top: 20px; /* Position sous les liens */
+    width: 300px;
+    height: 80px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+    border-radius: 10px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
 }
 
-.link:hover::before,
-.link:hover::after {
-    display: block; /* Affiché au survol */
+.audio-player:hover {
+    opacity: 1;
 }
 
-/* Animation glitch */
-@keyframes glitch-border {
-    0% {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-    25% {
-        clip-path: polygon(10% 0, 90% 0, 100% 90%, 0 80%);
-    }
-    50% {
-        clip-path: polygon(0 10%, 100% 20%, 80% 100%, 20% 80%);
-    }
-    75% {
-        clip-path: polygon(0 0, 100% 10%, 90% 100%, 10% 90%);
-    }
-    100% {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
+.audio-slider {
+    width: 100%;
+    cursor: pointer;
+}
+
+/* Fond semi-transparent de l'overlay */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Couleur plus sombre que #background-overlay */
+    z-index: 2;
+    display: flex; /* Pour centrer le panneau */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Panneau de consentement audio */
+#audio-consent-panel {
+    background: rgba(0, 0, 0, 0.9); /* Fond sombre */
+    color: #fff;
+    font-family: 'SAIBA', sans-serif; /* Utilisation de la typo SAIBA */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+#audio-consent-panel p {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+/* Boutons de consentement */
+.consent-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'SAIBA', sans-serif;
+    font-size: 1.2em;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+}
+
+.button.green {
+    background-color: #00ff00; /* Accepter */
+}
+
+.button.green:hover {
+    background-color: #00cc00;
+}
+
+.button.red {
+    background-color: #ff0000; /* Refuser */
+}
+
+.button.red:hover {
+    background-color: #cc0000;
 }
 
 /* Styles pour petits écrans */
@@ -170,5 +203,41 @@ spline-viewer {
     .link {
         font-size: 1em;
         padding: 8px 15px;
+    }
+
+    .audio-player {
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    #audio-consent-panel {
+        padding: 15px;
+    }
+
+    #audio-consent-panel p {
+        font-size: 1.2em;
+    }
+
+    .button {
+        font-size: 1em;
+    }
+}
+
+/* Animation glitch */
+@keyframes glitch {
+    0% {
+        text-shadow: 2px -2px 0px red, -2px 2px 0px blue;
+    }
+    25% {
+        text-shadow: -2px -2px 0px green, 2px 2px 0px purple;
+    }
+    50% {
+        text-shadow: 2px 2px 0px yellow, -2px -2px 0px orange;
+    }
+    75% {
+        text-shadow: -2px 2px 0px cyan, 2px -2px 0px magenta;
+    }
+    100% {
+        text-shadow: 0px 0px 10px #00ff00;
     }
 }
