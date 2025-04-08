@@ -4,6 +4,7 @@ const App = {
     init() {
         this.showConsentPanel(); // Afficher le panneau de consentement
         this.initMouseEffect(); // Animation de la souris
+        this.initAudioControls(); // Contrôle de l'audio
         this.startLinkAnimations(); // Animation des liens
     },
 
@@ -46,6 +47,43 @@ const App = {
             requestAnimationFrame(() => {
                 container.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
             });
+        });
+    },
+
+    // Contrôle du lecteur audio
+    initAudioControls() {
+        const audio = document.getElementById('audio-element');
+        const playPauseButton = document.getElementById('play-pause-audio');
+        const slider = document.getElementById('audio-slider');
+
+        if (!audio || !playPauseButton || !slider) return; // Vérification des éléments
+
+        // Basculer entre lecture et pause
+        playPauseButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = 'Pause'; // Changer le bouton en Pause
+                playPauseButton.setAttribute('aria-label', 'Pause');
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'Play'; // Changer le bouton en Play
+                playPauseButton.setAttribute('aria-label', 'Play');
+            }
+        });
+
+        // Mettre à jour la barre de progression pendant la lecture
+        audio.addEventListener('timeupdate', () => {
+            slider.value = audio.currentTime;
+        });
+
+        // Ajuster la durée maximale de la barre après le chargement des métadonnées
+        audio.addEventListener('loadedmetadata', () => {
+            slider.max = audio.duration;
+        });
+
+        // Permettre à l'utilisateur de choisir un moment précis dans la musique
+        slider.addEventListener('input', (e) => {
+            audio.currentTime = e.target.value;
         });
     },
 

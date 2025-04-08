@@ -34,8 +34,19 @@ spline-viewer {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -2;
     filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.8));
+}
+
+/* Fond semi-transparent sur le fond Spline */
+#background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
+    z-index: -1; /* Sous le contenu principal mais au-dessus de la visionneuse Spline */
 }
 
 /* Conteneur principal */
@@ -116,16 +127,17 @@ spline-viewer {
 
 .audio-slider {
     width: 100%;
+    cursor: pointer;
 }
 
-/* Fond semi-transparent */
+/* Fond semi-transparent de l'overlay */
 #overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
+    background: rgba(0, 0, 0, 0.8); /* Couleur plus sombre que #background-overlay */
     z-index: 2;
     display: flex; /* Pour centrer le panneau */
     justify-content: center;

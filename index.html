@@ -16,6 +16,9 @@
         role="img">
     </spline-viewer>
 
+    <!-- Fond semi-transparent sur le fond Spline -->
+    <div id="background-overlay"></div>
+
     <!-- Conteneur principal -->
     <main class="container">
         <h1 class="glitch" data-text="LINKS" aria-label="Titre LINKS avec effet glitch">LINKS</h1>
@@ -42,15 +45,10 @@
             </div>
         </section>
 
-        <!-- Lecteur audio déplacé sous les liens -->
+        <!-- Lecteur audio placé sous les liens -->
         <div id="audio-player" class="audio-player">
-            <audio id="audio-element" loop aria-label="Lecteur audio">
-                <source src="assets/audios/videoplayback.m4a" type="audio/mp4">
-                Votre navigateur ne supporte pas l'élément audio. <a href="assets/audios/videoplayback.m4a">Téléchargez le fichier audio ici.</a>
-            </audio>
-            <button id="play-audio" aria-label="Lancer la lecture audio">Play</button>
-            <button id="pause-audio" aria-label="Mettre en pause l'audio">Pause</button>
-            <input type="range" id="audio-slider" min="0" value="0" step="1" aria-label="Contrôle de progression de l'audio">
+            <button id="play-pause-audio" aria-label="Play">Play</button>
+            <input type="range" id="audio-slider" min="0" value="0" step="0.1" aria-label="Barre de progression de l'audio">
         </div>
     </main>
 
