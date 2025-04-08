@@ -105,7 +105,7 @@ spline-viewer {
     justify-content: center;
     gap: 10px;
     text-decoration: none; /* Suppression du soulignement */
-    padding: 10px 20px; /* Conserve les proportions correctes */
+    padding: 10px 20px; /* Proportions des boutons conservées */
     border: 2px solid #00ff00; /* Bordure verte par défaut */
     border-radius: 10px; /* Coins arrondis */
     background: rgba(0, 0, 0, 0.8); /* Fond sombre par défaut */
@@ -117,12 +117,12 @@ spline-viewer {
     overflow: hidden; /* Nécessaire pour l'effet glitch */
 }
 
-/* Typographie glitch et bordures glitch des boutons au survol */
+/* Effet glitch pour la typographie et les bordures des boutons au survol */
 .link:hover {
     color: #00ff00; /* Typographie verte au survol */
-    text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Effet glitch sur la typo */
-    animation: glitch 1.5s infinite; /* Applique l'effet glitch comme LINKS */
-    border-color: transparent; /* Supprime la bordure classique */
+    text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Glitch sur la typo */
+    animation: glitch 1.5s infinite; /* Effet glitch comme "LINKS" */
+    border-color: transparent; /* Bordure classique invisible pour activer l'effet */
 }
 
 /* Effet glitch sur les bords des boutons */
@@ -148,7 +148,7 @@ spline-viewer {
 }
 
 .link:hover::before {
-    opacity: 1; /* Affiche l'effet glitch sur les bords */
+    opacity: 1; /* Afficher l'effet glitch sur les bords */
     animation: glitch-border 1.5s infinite;
 }
 
