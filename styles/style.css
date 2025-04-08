@@ -45,7 +45,7 @@ spline-viewer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
     z-index: -1; /* Sous le contenu principal mais au-dessus de la visionneuse Spline */
 }
 
@@ -86,7 +86,7 @@ spline-viewer {
     align-items: center;
     gap: 10px;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 20px; /* Taille et forme conservées */
     border: 2px solid #00ff00;
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.8);
@@ -95,7 +95,12 @@ spline-viewer {
     font-family: 'Beograd', sans-serif;
     transition: all 0.3s ease-in-out;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Nécessaire pour l'effet glitch */
+}
+
+.link img {
+    width: 40px;
+    height: 40px;
 }
 
 /* Couleurs des boutons au survol */
@@ -115,7 +120,7 @@ spline-viewer {
     background-color: #FF0050; /* Rose TikTok */
 }
 
-/* Effet glitch sur les bords au survol */
+/* Effet glitch sur les bords des boutons */
 .link::before,
 .link::after {
     content: '';
@@ -162,7 +167,7 @@ spline-viewer {
 
 /* Lecteur audio */
 .audio-player {
-    margin-top: 20px;
+    margin-top: 20px; /* Position sous les liens */
     width: 300px;
     height: 80px;
     padding: 10px;
