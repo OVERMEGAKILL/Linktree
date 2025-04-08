@@ -55,7 +55,14 @@
 
         <!-- Fond semi-transparent -->
         <div id="overlay">
-            <button id="close-overlay" aria-label="Fermer le fond sombre">Fermer</button>
+            <!-- Panneau de consentement audio -->
+            <div id="audio-consent-panel">
+                <p>Voulez-vous activer le lecteur audio ?</p>
+                <div class="consent-buttons">
+                    <button id="accept-audio" class="button green">Accepter</button>
+                    <button id="decline-audio" class="button red">Refuser</button>
+                </div>
+            </div>
         </div>
     </main>
 
