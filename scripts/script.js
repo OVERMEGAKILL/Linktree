@@ -55,7 +55,7 @@ const App = {
     },
 
     // Contrôle du lecteur audio
-	initAudioControls() {
+	/*initAudioControls() {
         const audio = document.getElementById('audio-element');
         const playPauseButton = document.getElementById('play-pause-audio');
         const slider = document.getElementById('audio-slider');
@@ -95,7 +95,45 @@ const App = {
         slider.addEventListener('input', (e) => {
             audio.currentTime = e.target.value;
         });
-    },
+    },*/
+	initAudioControls() {
+    const audio = document.getElementById('audio-element');
+    const playPauseButton = document.getElementById('play-pause-audio');
+    const audioSlider = document.getElementById('audio-slider');
+    const volumeSlider = document.getElementById('volume-slider');
+
+    // Vérification des éléments requis
+    if (!audio || !playPauseButton || !audioSlider || !volumeSlider) {
+        console.error("Le lecteur audio ou ses contrôles ne sont pas correctement configurés !");
+        return;
+    }
+
+    // Lecture et pause
+    playPauseButton.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseButton.textContent = 'Pause'; // Changer le bouton en Pause
+        } else {
+            audio.pause();
+            playPauseButton.textContent = 'Play'; // Changer le bouton en Play
+        }
+    });
+
+    // Mise à jour de la barre de progression
+    audio.addEventListener('timeupdate', () => {
+        audioSlider.value = (audio.currentTime / audio.duration) * 100 || 0;
+    });
+
+    // Modification de la position de l'audio avec le slider
+    audioSlider.addEventListener('input', (e) => {
+        audio.currentTime = (e.target.value / 100) * audio.duration;
+    });
+
+    // Ajustement du volume
+    volumeSlider.addEventListener('input', (e) => {
+        audio.volume = e.target.value;
+    });
+}
 
 
     // Animation des liens
