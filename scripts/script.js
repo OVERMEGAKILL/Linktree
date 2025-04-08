@@ -39,50 +39,35 @@ const App = {
         });
     }, */
 	
-	showConsentPanel() {
-    const overlay = document.getElementById('overlay'); // Panneau principal
-    const acceptButton = document.getElementById('accept-audio'); // Bouton Accepter
-    const declineButton = document.getElementById('decline-audio'); // Bouton Refuser
-    const audio = document.getElementById('audio-element'); // Élément audio principal du nouveau lecteur
+showConsentPanel() {
+    const overlay = document.getElementById('overlay');
+    const acceptButton = document.getElementById('accept-audio');
+    const declineButton = document.getElementById('decline-audio');
+    const audioElement = document.getElementById('audio-element');
 
     // Vérification des éléments requis
-    if (!overlay || !acceptButton || !declineButton || !audio) {
+    if (!overlay || !acceptButton || !declineButton || !audioElement) {
         console.error("Un ou plusieurs éléments requis sont introuvables !");
         return;
     }
 
-    // Afficher l'overlay de consentement
+    // Afficher l'overlay
     overlay.style.display = 'flex';
 
-    // Bouton "Accepter" - Démarrer l'audio
+    // Bouton "Accepter"
     acceptButton.addEventListener('click', () => {
-        overlay.style.display = 'none'; // Cacher l'overlay
-        audio.play(); // Démarrer la musique
+        overlay.style.display = 'none'; // Masquer l'overlay
+        audioElement.play(); // Démarrer la musique
         console.log("Audio activé !");
     });
 
-    // Bouton "Refuser" - Arrêter l'audio
+    // Bouton "Refuser"
     declineButton.addEventListener('click', () => {
-        overlay.style.display = 'none'; // Cacher l'overlay
-        audio.pause(); // S'assurer que la musique reste arrêtée
+        overlay.style.display = 'none'; // Masquer l'overlay
+        audioElement.pause(); // S'assurer que l'audio reste en pause
         console.log("Audio refusé !");
     });
 }
-
-    // Effet de rotation basé sur les mouvements de la souris
-    initMouseEffect() {
-        const container = document.querySelector('.container');
-        if (!container) return;
-
-        document.addEventListener('mousemove', (e) => {
-            const x = (window.innerWidth / 2 - e.pageX) / 20;
-            const y = (window.innerHeight / 2 - e.pageY) / 20;
-
-            requestAnimationFrame(() => {
-                container.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
-            });
-        });
-    },
 
     // Contrôle du lecteur audio
    /*  initAudioControls() {
