@@ -117,6 +117,11 @@ spline-viewer {
     overflow: hidden; /* Nécessaire pour l'effet glitch */
 }
 
+.link a {
+	color:#fff;
+    text-decoration: none; /* Supprime le soulignement */
+}
+
 .link img {
     width: 30px; /* Taille réduite des logos */
     height: 30px; /* Taille réduite des logos */
@@ -126,6 +131,12 @@ spline-viewer {
 .link:hover {
     color: #00ff00; /* Typographie verte au survol */
     border-color: #00ff00; /* Bordure reste verte avec l'effet glitch */
+	text-shadow: 2px -2px 0px red, -2px 2px 0px blue; /* Glitch sur la typo */ 
+	animation: glitch 1.5s infinite; /* Effet glitch sur la typo */
+}
+
+.link a:hover{
+	color:#00ff00;
 }
 
 .link::before,
